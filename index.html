@@ -13,19 +13,49 @@
         width: 300px;
         height: 300px;
     }
+    .a {
+        border: solid black 1px;
+        width: 300px;
+        height: 100px;
+    }
+    .b{
+        border: solid black 1px;
+        width: 150px;
+        height: 100px;
+        margin-top: 0px;
+        display: inline-block;
+    }
+    .c{
+        border: solid black 1px;
+        width: 150px;
+        height: 100px;
+        margin-left: -2px;
+        margin-bottom: 150px;
+        display: inline-block;
+        position: absolute;
+    }
+    .d{
+        border: solid black 1px;
+        width: 300px;
+        height: 96px;
+        margin-top: 0px;
+        position: absolute;
+    }
 </style>
 <body>
 <div class="q" id="z">
+    <div id="a" class="a">
+        <div>
+            <img src="sun.png" id = "pogoda1" width="300px" height="100px">
+        </div>
+    </div>
+
+
+    <div id="b" class="b"></div>
+    <div id="c" class="c"></div>
+    <div id="d" class="d"></div>
 
 </div>
-
-
-
-
-
-
-
-
 </body>
 <script>
 
@@ -35,14 +65,19 @@
         a = await a.json();
         temp = a.main.temp_max - 273.15 + ' C&#176';
         pogoda = a.weather[0].main;
-
-
-
-
         console.log(a);
         console.log(temp, pogoda);
-        document.getElementById('z').innerHTML = temp + '  ' + pogoda
+        x = document.getElementById('b').innerHTML = temp + '  ' + pogoda;
 
+         let c = "cloud.png";
+         let s = "sun.png";
+         if (pogoda.includes("Clouds")){
+             document.getElementById("pogoda1").src=c;
+
+         } else if (pogoda.includes("Sunny")){
+             document.getElementById("pogoda1").src=s;
+
+         }
 
     }
 weather()
