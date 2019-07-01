@@ -56,17 +56,26 @@
     <div id="d" class="d"></div>
 
 </div>
+<select onchange="goroda ()" id="goroda">
+  <option id="bishkek" value="Bishkek">Бишкек</option>
+  <option id="moscow" value="Moscow">Москва</option>
+</select>
 </body>
 <script>
 
     async function weather () {
         let key = '25be154c3da87b2c00e32167e066bd1a';
-        let a = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Bishkek&lang=RU&appid=' + key);
+        let gorod = document.getElementById('goroda').value;
+    console.log(gorod);
+        let a = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + gorod + '&lang=RU&appid=' + key);
         a = await a.json();
-        temp = a.main.temp_max - 273.15 + ' C&#176';
+        temp = a.main.temp_max - 273.15;
+        temp = Math.round(temp)
+        temp = temp + ' C&#176'
         pogoda = a.weather[0].main;
         console.log(a);
         console.log(temp, pogoda);
+
         x = document.getElementById('b').innerHTML = temp + '  ' + pogoda;
 
          let c = "cloud.png";
@@ -79,9 +88,20 @@
 
          }
 
-    }
-weather()
 
+    }
+
+
+weather();
+
+
+
+
+function goroda() {
+        weather()
+
+
+}
 
 
 </script>
